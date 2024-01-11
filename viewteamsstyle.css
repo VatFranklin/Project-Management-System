@@ -1,0 +1,169 @@
+
+/* Add the styling code here */
+
+
+
+/* ... (rest of the existing styling code) ... */
+
+/* Additional styling for the checkbox */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size:30px;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: 1px solid #888;
+    border-radius: 4px;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: var(--main-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 10px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+.container {
+        font-size: 18px;
+    }
+
+    .team-name {
+        font-size: 24px; /* Adjust the font size for the team name */
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .styled-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid #4CAF50; /* Green border color */
+        color: #4CAF50; /* Green text color */
+        border-radius: 5px;
+        background-color: white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .styled-button:hover {
+        background-color: #4CAF50; /* Green background color */
+        color: white; /* White text color */
+    }
+    .team-name-input {
+font-size: 18px;
+padding: 10px;
+margin-left:20px;
+margin-bottom: 20px; 
+margin-top:10px;/* Adjust the margin as needed */
+width: 35%; /* Make the input box fill the container */
+box-sizing: border-box; 
+/* Include padding and border in the element's total width and height */
+  
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+table {
+border-collapse: collapse;
+width: 80%; /* Adjust the width as needed */
+margin: auto; /* Center the table */
+border: 2px solid #8e44ad; /* Set border color and thickness */
+box-sizing: border-box; /* Include padding and border in the element's total width and height */
+overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+th {
+border: 2px solid #8e44ad; /* Set cell border color and thickness */
+padding: 8px;
+text-align: center;
+font-size: 18px;
+}
+td{
+border: 2px solid #8e44ad; /* Set cell border color and thickness */
+padding: 8px;
+text-align: left;
+font-size: 18px;
+margin-bottom:3px;
+}
+.box{
+display:flex;
+margin-left:20px;
+}
+.box {
+display: flex;
+position: relative; /* Set position relative for proper positioning of box2 */
+}
+
+.box1 {
+background-color: white;
+width: 60%;
+
+overflow: auto;
+padding-right: 20px; /* Add padding to prevent overlap with box2 */
+}
+
+.box2 {
+background-color: white;
+width: 30%;
+padding-left: 50px;
+position: fixed;
+top: 160px;
+right: 10px;
+bottom:0;
+
+z-index: 1; /* Ensure box2 appears above other elements */
+}
+.team-member {
+    display: flex;
+    justify-content: space-between;
+}
+
+.roll-number, .name {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    width: 48%; /* Adjust as needed, leaving space for borders */
+}
+
+.roll-number {
+    margin-right: 1%; /* Adjust as needed for spacing between columns */
+}

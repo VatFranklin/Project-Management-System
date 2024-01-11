@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Faculty Registration</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+   <link rel="stylesheet" href="style.css">
+   <style>
+    .error-message {
+       color: red;
+       font-size: 14px;
+    }
+
+    #passwordStrength {
+       margin-top: 5px;
+       font-size: 12px;
+    }
+
+    .weak {
+       color: red;
+    }
+
+    .strong {
+       color: green;
+    }
+ </style>
+</head>
+<body>
+    <div class="parent">
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom ">
+      <div class="col-md-3 mb-2 mb-md-0">
+            <a href="home.php" class="logo"><img src="images/logo2.png" ></a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 navbar">
+        <li><a href="home.php" class="nav-link px-2 link-secondary"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="studentlogin.html" class="nav-link px-2 link-secondary"><i class="fas fa-chalkboard-user"></i>Students</a></li>
+        <li><a href="facultylogin.html" class="nav-link px-2 link-secondary"><i class="fas fa-chalkboard-user"></i>Faculty</a></li>
+        <li><a href="projects.php" class="nav-link px-2 link-secondary"><i class="fas fa-graduation-cap"></i>Projects</a></li>
+      </ul>
+    </header>
+  </div> 
+</div>
+<section class="form-container">
+
+    <form name="registrationForm"  onsubmit="return validateAndSubmit()" action="facultyregistration.php" method="post" enctype="multipart/form-data">
+       <h3>register now</h3>
+      
+       <input type="text" name="name" placeholder="Enter name" required maxlength="50" class="box">
+  
+       <input type="email" name="email" placeholder="Enter mail-id" required maxlength="50" class="box">
+
+       <input type="text" name="username" placeholder="Enter username" required maxlength="50" class="box" oninput="validateUsername()">
+       <div id="usernameError" class="error-message"></div>
+      
+       <input type="password" name="password" placeholder="Enter password" required maxlength="20" class="box" oninput="checkPasswordStrength()">
+       <div id="passwordStrength" class="password-strength"></div>
+       <div id="passwordError" class="error-message"></div>
+       
+       <input type="password" name="c_pass" placeholder="Confirm password" required maxlength="20" class="box">
+       <p>select profile <span></span></p>
+       <input type="file" name="image" accept="image/*"  class="box">
+       <input type="submit" value="register now" name="submit" class="btn">
+    </form>
+ 
+ </section>
+ 
+<footer class="footer">
+
+    &copy; Copyright @ 2023 <span>PSG</span> | All rights reserved!
+  
+  </footer>
+  <script>
+    // Function to validate the form
+    function checkPasswordStrength() {
+       var password = document.forms["registrationForm"]["password"].value;
+       var passwordStrength = document.getElementById("passwordStrength");
+
+       var strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+       var mediumRegex = /^(?=.*[a-zA-Z])(?=.*\d)([A-Za-z\d@$!%*?&]{6,})$/;
+
+       if (strongRegex.test(password)) {
+          passwordStrength.innerHTML = '<span class="strong">Strong password!</span>';
+       } else if (mediumRegex.test(password)) {
+          passwordStrength.innerHTML = '<span class="weak">Medium password.</span>';
+       } else {
+          passwordStrength.innerHTML = '<span class="weak">Weak password. Include uppercase, lowercase, digit, and special character.</span>';
+       }
+    }
+    function validateUsername() {
+         var username = document.forms["registrationForm"]["username"].value;
+         var usernameError = document.getElementById("usernameError");
+         var usernameRegex = /^(CT)\d+/;
+
+         if (!usernameRegex.test(username)) {
+            usernameError.innerHTML = "Username must start with 'CT' followed by faculty ID.";
+         } else {
+            usernameError.innerHTML = "";
+         }
+      }
+      function validateAndSubmit() {
+      if (validateForm()) {
+         // The form is valid, proceed with submission
+         return true;
+      } else {
+         // The form is not valid, prevent submission
+         return false;
+      }
+   }
+
+   // Function to validate the form
+   function validateForm() {
+      // ... (existing validation code)
+
+      // Reset previous error messages
+      document.getElementById("nameError").innerHTML = "";
+      document.getElementById("emailError").innerHTML = "";
+      document.getElementById("usernameError").innerHTML = "";
+      document.getElementById("passwordError").innerHTML = "";
+      document.getElementById("c_passError").innerHTML = "";
+
+      // Validate password
+      var password = document.forms["registrationForm"]["password"].value;
+      var strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/;
+
+      if (!strongRegex.test(password)) {
+         document.getElementById("passwordError").innerHTML = "Password must be strong. Include uppercase, lowercase, digit, and special character.";
+         return false;
+      }
+
+      // Validate username
+      var username = document.forms["registrationForm"]["username"].value;
+      var usernameRegex = /^(A|SF)\d+/;
+
+      if (!usernameRegex.test(username)) {
+         document.getElementById("usernameError").innerHTML = "Username must start with 'A' or 'SF' followed by faculty ID.";
+         return false;
+      }
+
+      // ... (existing validation code)
+
+      return true;
+   }
+
+    // Function to check password strength
+    
+ </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+  </html>

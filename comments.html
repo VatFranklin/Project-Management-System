@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment Box</title>
+  <style>
+    .comment-box {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin: 20px;
+      padding: 15px;
+    }
+
+    .comment-input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .comment-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comment-item {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="comment-box">
+    <input type="text" class="comment-input" placeholder="Add a comment..." id="commentInput">
+    <button onclick="postComment()">Post</button>
+    <ul class="comment-list" id="commentList"></ul>
+  </div>
+
+  <script>
+    function postComment() {
+      var commentInput = document.getElementById('commentInput');
+      var commentList = document.getElementById('commentList');
+
+      var commentText = commentInput.value.trim();
+
+      if (commentText !== '') {
+        var commentItem = document.createElement('li');
+        commentItem.classList.add('comment-item');
+        commentItem.textContent = commentText;
+        commentList.appendChild(commentItem);
+
+        // Clear the input
+        commentInput.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
